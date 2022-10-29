@@ -3,7 +3,7 @@
 
 import { stringify } from "querystring";
 
-//   checkType(type: String) {
+//   checkType(type: string) {
 //     if (type === Task.types.todo) {
 //     }
 //     if (type === Task.types.daily) {
@@ -18,43 +18,31 @@ import { stringify } from "querystring";
 // }
 
 export class Task {
-  #text: String;
-  #tags: String[];
-  #alias: String;
-  #attribute: String;
+  #text: string;
+  #type: string;
+  #tags: string[];
+  #alias: string;
+  #attribute: string;
   #checklist: [];
   #collapseChecklist: boolean;
-  #notes: String;
+  #notes: string;
   #priority: Number;
-  #reminders: String[];
+  #reminders: string[];
   #everyX: Number;
   #startDate: Date;
 
-  // TODO: Add verifiers
+  #body: object;
 
-  constructor({ text, tags }) {
-    this.text = text;
-    this.tags = tags;
-    // this.alias = params.alias;
-    // this.checklist = params.checklist;
-    // this.#collapseChecklist;
+  protected addToBody(key: string, value: any) {
+    Object.defineProperty(this.#body, key, value);
+    return value;
   }
 
-  /**
-   * The text to be displayed for the task
-   */
-  get text() {
-    return this.#text;
-  }
-  set text(text) {
-    this.#text = text;
-  }
+  protected tryFromBody(key: string) {
+    if (this.#body.hasOwnProperty(key)) return this.#body[key];
 
-  get tags() {
-    return this.#tags;
-  }
-  set tags(tags) {
-    this.#tags = tags;
+    // TODO:failed to retrieve from body
+    return undefined;
   }
 
   static get types() {
@@ -66,23 +54,66 @@ export class Task {
     };
   }
 
-  get stringify() {
-    return null;
+  constructor({ text, type, tags }: any) {
+    // this.#verifyData({ text, tags });
+    this.text = text;
+    this.tags = tags;
+    this.type = type;
+    // this.alias = params.alias;
+    // this.checklist = params.checklist;
+    // this.#collapseChecklist;
+  }
+
+  /**
+   * The text to be displayed for the task
+   */
+  get text() {
+    return this.#tryFromBody("text");
+  }
+  set text(text) {
+    //TODO: verify
+    this.#text = this.#addToBody("text", text);
+  }
+
+  /**
+   * Task type, options are: "habit", "daily", "todo", "reward".
+   * Allowed values: "habit", "daily", "todo", "reward"
+   */
+  get type() {
+    return this.#type;
+  }
+  set type(type) {
+    //TODO: verify
+    this.#type = this.#addToBody("type", type);
+  }
+
+  /**
+   * Array of UUIDs of tags
+   */
+  get tags() {
+    return this.#tags;
+  }
+  set tags(tags) {
+    //TODO: verify
+    this.#tags = this.#addToBody("type", tags);
+  }
+
+  get stringify(): BodyInit {
+    return JSON.stringify(this.#body);
   }
 }
 
 export class Todo extends Task {
   #date: Date;
-  constructor(text: String, tags: String[]) {
-    super({ text: text, tags: tags });
+  constructor({ text, tags }: any) {
+    super({ text: text, tags: tags, type: "todo" });
   }
 
-  get stringify() {
-    const data = {
-      text: this.text,
-      type: Task.types.todo,
-    };
-    return JSON.stringify(data);
+  get date() {
+    return this.#date;
+  }
+  set date(date) {
+    this.#date = super.#addToBody("date", date);
   }
 }
 // class Habit extends Task {
@@ -93,8 +124,8 @@ export class Todo extends Task {
 //   }
 // }
 // class Daily extends Task {
-//   #frequency: String;
-//   #repeat: String;
+//   #frequency: string;
+//   #repeat: string;
 //   #streak: Number;
 //   #daysOfMonth: Int32Array; // The API Documentation say to use Interger[], not Int32Array
 //   #weeksOfMonth: Int32Array; // <<

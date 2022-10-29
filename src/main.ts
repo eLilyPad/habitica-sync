@@ -75,8 +75,13 @@ export default class HabiticaSync extends Plugin {
       this.app.workspace.getLeavesOfType(VIEW_TYPE)[0]
     );
   }
+  //#region My Changes
+
   async createTodo() {
-    const todo = new Todo("Text Todo", []);
+    const todo = new Todo({ text: "Text Todo", tags: [] });
+
     postTask(this.settings.userID, this.settings.apiToken, todo);
   }
+
+  //#endregion
 }
