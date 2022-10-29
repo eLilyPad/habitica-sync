@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open Sans:ital,wght@0,400;1,100&family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open Sans:ital,wght@0,400;1,100&family=Roboto&display=swap");
 
 .add-task-input {
   display: flex;
@@ -30,18 +30,18 @@
 }
 
 .todo-item {
-    display: grid;
-    grid-template-columns: 1fr 30fr 1fr 1fr;
-    justify-content: left;
-    align-items: flex-start;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    width: 100%;
-    border-bottom: 1px solid #cecece;
-    font-family: Roboto, sans-serif;
-    font-weight: bold;
-    font-size: 16px;
-    padding-left: 0;
+  display: grid;
+  grid-template-columns: 1fr 30fr 1fr 1fr;
+  justify-content: left;
+  align-items: flex-start;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 100%;
+  border-bottom: 1px solid #cecece;
+  font-family: Roboto, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  padding-left: 0;
 }
 
 .description {
@@ -52,7 +52,7 @@
   list-style-type: none;
 }
 p {
-    margin: 0;
+  margin: 0;
 }
 
 .habit-text {
@@ -101,7 +101,7 @@ p {
   height: 100%;
 }
 
-input[type=checkbox] {
+input[type="checkbox"] {
   margin-right: 10px;
   margin-top: 5px;
   align-self: start;
@@ -112,15 +112,15 @@ input[type=checkbox] {
 }
 
 .submit-button {
-    /* padding: 5px 5px; */
-    font-size: 15px;
-    border: 1px solid #aaa;
-    /* white-space: nowrap; */
-    /* margin: 10px; */
-    margin: 0;
+  /* padding: 5px 5px; */
+  font-size: 15px;
+  border: 1px solid #aaa;
+  /* white-space: nowrap; */
+  /* margin: 10px; */
+  margin: 0;
 }
 
-input[type=checkbox]:focus {
+input[type="checkbox"]:focus {
   outline: 0;
 }
 
@@ -141,7 +141,6 @@ input[type=checkbox]:focus {
   width: 100%;
 }
 
-
 .view-content {
   margin-bottom: 0;
 }
@@ -159,14 +158,20 @@ ul {
   font-size: 12px !important;
   padding-top: 1px;
   padding-right: 2px;
-  
 }
 
-.material-icons.md-18 { font-size: 18px !important; }
-.material-icons.md-24 { font-size: 24px !important; }
-.material-icons.md-32 { font-size: 32px !important; }
-.material-icons.md-48 { font-size: 48px !important; }
-
+.material-icons.md-18 {
+  font-size: 18px !important;
+}
+.material-icons.md-24 {
+  font-size: 24px !important;
+}
+.material-icons.md-32 {
+  font-size: 32px !important;
+}
+.material-icons.md-48 {
+  font-size: 48px !important;
+}
 
 .react-tabs {
   -webkit-tap-highlight-color: transparent;
@@ -286,7 +291,7 @@ button {
 .cron {
   display: inline-grid;
   justify-content: center;
-  text-align: center;;
+  text-align: center;
   margin-top: 5px;
   margin-left: 10%;
   margin-right: 10%;
@@ -296,7 +301,7 @@ button {
 #cronMessage {
   margin: 20px;
   margin-bottom: 10px;
-  color: var(--text-normal)
+  color: var(--text-normal);
 }
 #cronButton {
   margin: auto;
@@ -317,7 +322,7 @@ button {
 .emoji {
   height: 1em;
 }
-.description>ul {
+.description > ul {
   list-style-type: disc;
   margin-left: 10% !important;
 }
